@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --transition-speed: 0.15s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  color: #111827;
+}
+
+.font-geist-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* 闪烁动画 */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* 行业图标样式 */
+.industry-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 80px;
+  opacity: 0.15;
+  color: currentColor;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.industry-card:hover .industry-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Industry Card Styles */
+.industry-card {
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  animation: blink 2s infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.industry-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  animation: none; /* 鼠标悬停时停止闪烁 */
+}
+
+/* Stock List Styles */
+.stock-list {
+  list-style: none;
+}
+
+.stock-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.stock-list li:last-child {
+  border-bottom: none;
+}
+
+.stock-name {
+  font-weight: 500;
+}
+
+.stock-code {
+  color: #6B7280;
+  font-size: 0.9em;
+}
+
+/* Compact View */
+.compact-view .industry-card {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.compact-view .stock-list li:nth-child(n+4) {
+  display: none;
+}
+
+.compact-view .stock-list::after {
+  content: "...";
+  display: block;
+  text-align: center;
+  padding-top: 8px;
+  color: #6B7280;
+}
